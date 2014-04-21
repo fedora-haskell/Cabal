@@ -1,0 +1,8 @@
+This repo is for experimental builds of the Cabal library
+for Fedora.
+
+You can find some corresponding builds currently in
+https://copr.fedoraproject.org/coprs/petersen/Cabal
+
+Cabal is part of the ghc library but this repo provides
+newer versions for building newer versions of cabal-install.
