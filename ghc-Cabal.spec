@@ -2,13 +2,9 @@
 
 %global pkg_name Cabal
 
-%global ghc_without_shared 1
-%global without_prof 1
-%global without_haddock 1
-
 Name:           ghc-%{pkg_name}
-Version:        1.18.1.3
-Release:        2%{?dist}
+Version:        1.20.0.0
+Release:        1%{?dist}
 Summary:        A framework for packaging Haskell software
 
 License:        BSD
@@ -45,6 +41,7 @@ Provides:       %{name}-static = %{version}-%{release}
 Requires:       ghc-compiler = %{ghc_version}
 Requires(post): ghc-compiler = %{ghc_version}
 Requires(postun): ghc-compiler = %{ghc_version}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description devel
 This package provides the Haskell %{pkg_name} library development files.
@@ -61,8 +58,6 @@ This package provides the Haskell %{pkg_name} library development files.
 %install
 %ghc_lib_install
 
-rm %buildroot%{_pkgdocdir}/LICENSE
-
 
 %post devel
 %ghc_pkg_recache
@@ -72,12 +67,19 @@ rm %buildroot%{_pkgdocdir}/LICENSE
 %ghc_pkg_recache
 
 
-%files devel -f %{name}-devel.files
+%files -f %{name}.files
 %doc LICENSE
-%doc README doc
+
+
+%files devel -f %{name}-devel.files
+%doc README
 
 
 %changelog
+* Mon Apr 21 2014 Jens Petersen <petersen@redhat.com> - 1.20.0.0-1
+- update to 1.20.0.0
+- reenable shared, prof, and haddock
+
 * Fri Mar  7 2014 Jens Petersen <petersen@fedoraproject.org> - 1.18.1.3-2
 - no base pkg so don't require it!
 
