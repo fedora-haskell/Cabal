@@ -3,7 +3,7 @@
 %global pkg_name Cabal
 
 Name:           ghc-%{pkg_name}
-Version:        1.20.0.0
+Version:        1.20.0.1
 Release:        1%{?dist}
 Summary:        A framework for packaging Haskell software
 
@@ -76,6 +76,9 @@ This package provides the Haskell %{pkg_name} library development files.
 
 
 %changelog
+* Wed Jun  4 2014 Jens Petersen <petersen@redhat.com> - 1.20.0.1-1
+- update to 1.20.0.1
+
 * Mon Apr 21 2014 Jens Petersen <petersen@redhat.com> - 1.20.0.0-1
 - update to 1.20.0.0
 - reenable shared, prof, and haddock
