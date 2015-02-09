@@ -2,14 +2,16 @@
 
 %global pkg_name Cabal
 
+%bcond_with tests
+
 Name:           ghc-%{pkg_name}
 Version:        1.20.0.3
 Release:        1%{?dist}
 Summary:        A framework for packaging Haskell software
 
 License:        BSD
-URL:            http://hackage.haskell.org/package/%{pkg_name}
-Source0:        http://hackage.haskell.org/package/%{pkg_name}-%{version}/%{pkg_name}-%{version}.tar.gz
+Url:            https://hackage.haskell.org/package/%{pkg_name}
+Source0:        https://hackage.haskell.org/package/%{pkg_name}-%{version}/%{pkg_name}-%{version}.tar.gz
 
 BuildRequires:  ghc-Cabal-devel
 BuildRequires:  ghc-rpm-macros
@@ -24,6 +26,17 @@ BuildRequires:  ghc-pretty-devel
 BuildRequires:  ghc-process-devel
 BuildRequires:  ghc-time-devel
 BuildRequires:  ghc-unix-devel
+%if %{with tests}
+BuildRequires:  ghc-HUnit-devel
+BuildRequires:  ghc-QuickCheck-devel
+BuildRequires:  ghc-QuickCheck-devel
+BuildRequires:  ghc-extensible-exceptions-devel
+BuildRequires:  ghc-regex-posix-devel
+BuildRequires:  ghc-test-framework-devel
+BuildRequires:  ghc-test-framework-hunit-devel
+BuildRequires:  ghc-test-framework-quickcheck2-devel
+BuildRequires:  ghc-test-framework-quickcheck2-devel
+%endif
 # End cabal-rpm deps
 
 %description
@@ -57,6 +70,12 @@ This package provides the Haskell %{pkg_name} library development files.
 
 %install
 %ghc_lib_install
+
+
+%check
+%if %{with tests}
+%cabal test
+%endif
 
 
 %post devel
