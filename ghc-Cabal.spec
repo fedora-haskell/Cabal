@@ -2,14 +2,16 @@
 
 %global pkg_name Cabal
 
+%bcond_with tests
+
 Name:           ghc-%{pkg_name}
-Version:        1.20.0.3
+Version:        1.18.1.5
 Release:        1%{?dist}
 Summary:        A framework for packaging Haskell software
 
 License:        BSD
-URL:            http://hackage.haskell.org/package/%{pkg_name}
-Source0:        http://hackage.haskell.org/package/%{pkg_name}-%{version}/%{pkg_name}-%{version}.tar.gz
+Url:            https://hackage.haskell.org/package/%{pkg_name}
+Source0:        https://hackage.haskell.org/package/%{pkg_name}-%{version}/%{pkg_name}-%{version}.tar.gz
 
 BuildRequires:  ghc-Cabal-devel
 BuildRequires:  ghc-rpm-macros
@@ -24,6 +26,17 @@ BuildRequires:  ghc-pretty-devel
 BuildRequires:  ghc-process-devel
 BuildRequires:  ghc-time-devel
 BuildRequires:  ghc-unix-devel
+%if %{with tests}
+BuildRequires:  ghc-HUnit-devel
+BuildRequires:  ghc-QuickCheck-devel
+BuildRequires:  ghc-QuickCheck-devel
+BuildRequires:  ghc-extensible-exceptions-devel
+BuildRequires:  ghc-regex-posix-devel
+BuildRequires:  ghc-test-framework-devel
+BuildRequires:  ghc-test-framework-hunit-devel
+BuildRequires:  ghc-test-framework-quickcheck2-devel
+BuildRequires:  ghc-test-framework-quickcheck2-devel
+%endif
 # End cabal-rpm deps
 
 %description
@@ -59,6 +72,10 @@ This package provides the Haskell %{pkg_name} library development files.
 %ghc_lib_install
 
 
+%check
+%cabal_test
+
+
 %post devel
 %ghc_pkg_recache
 
@@ -76,15 +93,9 @@ This package provides the Haskell %{pkg_name} library development files.
 
 
 %changelog
-* Thu Dec 25 2014 Jens Petersen <petersen@redhat.com> - 1.20.0.3-1
-- update to 1.20.0.3
-
-* Wed Jun  4 2014 Jens Petersen <petersen@redhat.com> - 1.20.0.1-1
-- update to 1.20.0.1
-
-* Mon Apr 21 2014 Jens Petersen <petersen@redhat.com> - 1.20.0.0-1
-- update to 1.20.0.0
-- reenable shared, prof, and haddock
+* Mon Feb  9 2015 Jens Petersen <petersen@redhat.com> - 1.18.1.5-1
+- update to 1.18.1.5
+- cblrpm refresh
 
 * Fri Mar  7 2014 Jens Petersen <petersen@fedoraproject.org> - 1.18.1.3-2
 - no base pkg so don't require it!
