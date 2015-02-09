@@ -73,7 +73,9 @@ This package provides the Haskell %{pkg_name} library development files.
 
 
 %check
-%cabal_test
+%if %{with tests}
+%cabal test
+%endif
 
 
 %post devel
