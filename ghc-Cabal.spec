@@ -5,7 +5,7 @@
 %bcond_with tests
 
 Name:           ghc-%{pkg_name}
-Version:        1.18.1.5
+Version:        1.18.1.6
 Release:        1%{?dist}
 Summary:        A framework for packaging Haskell software
 
@@ -29,12 +29,10 @@ BuildRequires:  ghc-unix-devel
 %if %{with tests}
 BuildRequires:  ghc-HUnit-devel
 BuildRequires:  ghc-QuickCheck-devel
-BuildRequires:  ghc-QuickCheck-devel
 BuildRequires:  ghc-extensible-exceptions-devel
 BuildRequires:  ghc-regex-posix-devel
 BuildRequires:  ghc-test-framework-devel
 BuildRequires:  ghc-test-framework-hunit-devel
-BuildRequires:  ghc-test-framework-quickcheck2-devel
 BuildRequires:  ghc-test-framework-quickcheck2-devel
 %endif
 # End cabal-rpm deps
@@ -95,6 +93,9 @@ This package provides the Haskell %{pkg_name} library development files.
 
 
 %changelog
+* Fri Oct 23 2015 Jens Petersen <petersen@redhat.com> - 1.18.1.6-1
+- update to 1.18.1.6
+
 * Mon Feb  9 2015 Jens Petersen <petersen@redhat.com> - 1.18.1.5-1
 - update to 1.18.1.5
 - cblrpm refresh
