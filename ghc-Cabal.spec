@@ -5,7 +5,7 @@
 %bcond_with tests
 
 Name:           ghc-%{pkg_name}
-Version:        1.20.0.3
+Version:        1.22.7.0
 Release:        1%{?dist}
 Summary:        A framework for packaging Haskell software
 
@@ -17,6 +17,7 @@ BuildRequires:  ghc-Cabal-devel
 BuildRequires:  ghc-rpm-macros
 # Begin cabal-rpm deps:
 BuildRequires:  ghc-array-devel
+BuildRequires:  ghc-binary-devel
 BuildRequires:  ghc-bytestring-devel
 BuildRequires:  ghc-containers-devel
 BuildRequires:  ghc-deepseq-devel
@@ -29,12 +30,11 @@ BuildRequires:  ghc-unix-devel
 %if %{with tests}
 BuildRequires:  ghc-HUnit-devel
 BuildRequires:  ghc-QuickCheck-devel
-BuildRequires:  ghc-QuickCheck-devel
 BuildRequires:  ghc-extensible-exceptions-devel
+BuildRequires:  ghc-old-time-devel
 BuildRequires:  ghc-regex-posix-devel
 BuildRequires:  ghc-test-framework-devel
 BuildRequires:  ghc-test-framework-hunit-devel
-BuildRequires:  ghc-test-framework-quickcheck2-devel
 BuildRequires:  ghc-test-framework-quickcheck2-devel
 %endif
 # End cabal-rpm deps
@@ -71,6 +71,8 @@ This package provides the Haskell %{pkg_name} library development files.
 %install
 %ghc_lib_install
 
+rm %{buildroot}%{ghc_pkgdocdir}/LICENSE
+
 
 %check
 %if %{with tests}
@@ -87,14 +89,17 @@ This package provides the Haskell %{pkg_name} library development files.
 
 
 %files -f %{name}.files
-%doc LICENSE
+%license LICENSE
 
 
 %files devel -f %{name}-devel.files
-%doc README
+%doc README.md changelog doc
 
 
 %changelog
+* Tue Mar  1 2016 Jens Petersen <petersen@redhat.com> - 1.22.7.0-1
+- update to 1.22.7.0
+
 * Thu Dec 25 2014 Jens Petersen <petersen@redhat.com> - 1.20.0.3-1
 - update to 1.20.0.3
 
