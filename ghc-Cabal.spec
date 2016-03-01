@@ -5,7 +5,7 @@
 %bcond_with tests
 
 Name:           ghc-%{pkg_name}
-Version:        1.22.7.0
+Version:        1.24.0.0
 Release:        1%{?dist}
 Summary:        A framework for packaging Haskell software
 
@@ -28,14 +28,14 @@ BuildRequires:  ghc-process-devel
 BuildRequires:  ghc-time-devel
 BuildRequires:  ghc-unix-devel
 %if %{with tests}
-BuildRequires:  ghc-HUnit-devel
 BuildRequires:  ghc-QuickCheck-devel
-BuildRequires:  ghc-extensible-exceptions-devel
 BuildRequires:  ghc-old-time-devel
 BuildRequires:  ghc-regex-posix-devel
-BuildRequires:  ghc-test-framework-devel
-BuildRequires:  ghc-test-framework-hunit-devel
-BuildRequires:  ghc-test-framework-quickcheck2-devel
+BuildRequires:  ghc-tagged-devel
+BuildRequires:  ghc-tasty-devel
+BuildRequires:  ghc-tasty-hunit-devel
+BuildRequires:  ghc-tasty-quickcheck-devel
+BuildRequires:  ghc-transformers-devel
 %endif
 # End cabal-rpm deps
 
@@ -97,6 +97,9 @@ rm %{buildroot}%{ghc_pkgdocdir}/LICENSE
 
 
 %changelog
+* Tue Mar  1 2016 Jens Petersen <petersen@redhat.com> - 1.24.0.0-1
+- update to 1.24.0.0
+
 * Tue Mar  1 2016 Jens Petersen <petersen@redhat.com> - 1.22.7.0-1
 - update to 1.22.7.0
 
