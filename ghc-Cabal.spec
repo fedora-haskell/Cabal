@@ -5,7 +5,7 @@
 %bcond_with tests
 
 Name:           ghc-%{pkg_name}
-Version:        1.24.0.0
+Version:        1.24.1.0
 Release:        1%{?dist}
 Summary:        A framework for packaging Haskell software
 
@@ -97,6 +97,9 @@ rm %{buildroot}%{ghc_pkgdocdir}/LICENSE
 
 
 %changelog
+* Fri Nov 11 2016 Jens Petersen <petersen@redhat.com> - 1.24.1.0-1
+- update to 1.24.1.0
+
 * Tue Mar  1 2016 Jens Petersen <petersen@redhat.com> - 1.24.0.0-1
 - update to 1.24.0.0
 
