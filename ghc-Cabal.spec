@@ -71,13 +71,9 @@ This package provides the Haskell %{pkg_name} library development files.
 %install
 %ghc_lib_install
 
-rm %{buildroot}%{ghc_pkgdocdir}/LICENSE
-
 
 %check
-%if %{with tests}
-%cabal test
-%endif
+%cabal_test
 
 
 %post devel
@@ -88,17 +84,21 @@ rm %{buildroot}%{ghc_pkgdocdir}/LICENSE
 %ghc_pkg_recache
 
 
-%files -f %{name}.files
+%files
 %license LICENSE
+%{_libdir}/*-linux-*/libHS%{pkg_name}-%{version}-*.so
 
 
-%files devel -f %{name}-devel.files
+%files devel
 %doc README.md changelog doc
+%{_libdir}/ghc-*/%{pkg_name}-%{version}
+%{_libdir}/ghc-*/package.conf.d/%{pkg_name}-%{version}.conf
 
 
 %changelog
 * Fri Nov 11 2016 Jens Petersen <petersen@redhat.com> - 1.24.1.0-1
 - update to 1.24.1.0
+- list files explicitly (also due to dynlibdir)
 
 * Tue Mar  1 2016 Jens Petersen <petersen@redhat.com> - 1.24.0.0-1
 - update to 1.24.0.0
