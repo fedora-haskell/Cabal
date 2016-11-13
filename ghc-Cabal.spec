@@ -91,7 +91,7 @@ This package provides the Haskell %{pkg_name} library development files.
 
 %files devel
 %doc README.md changelog doc
-%{_libdir}/ghc-*/%{pkg_name}-%{version}
+%{_libdir}/ghc-*/%{pkg_name}-%{version}*
 %{_libdir}/ghc-*/package.conf.d/%{pkg_name}-%{version}.conf
 
 
